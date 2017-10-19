@@ -1,10 +1,10 @@
 module Main where
 import Base
+import Scales
 import Data.List (intersperse)
 
 main :: IO()
 main = do
-  let cChromatic = map (fst . showPitchClass) pitchClasses
-  print (concat (intersperse " " cChromatic))
-  
+  print $ showCollection (makeScale_r 0 wholeTone)
+  print $ showCollection (makeScale_r 0 locrian)
         

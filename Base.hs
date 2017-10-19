@@ -1,4 +1,5 @@
 module Base where
+import Data.List (intersperse)
     
 pitchClasses = [0 .. 11] :: [Int]
 
@@ -15,6 +16,21 @@ showPitchClass 8  = ("G#", "Ab")
 showPitchClass 9  = ("A", "Bb")
 showPitchClass 10 = ("A#", "B")
 showPitchClass 11 = ("B", "Cb")
+
+data Step = H | W | T deriving (Show, Eq)
+
+addStep :: Int -> Step -> Int
+addStep start H = start + 1
+addStep start W = start + 2
+addStep start T = start + 3
+
+makeScale :: Int -> [Step] -> [Int]
+makeScale start steps = scanl addStep start steps
+
+makeScale_r start steps = map renorm (makeScale start steps)
+
+showCollection :: [Int] -> String
+showCollection notes = concat (intersperse " " (map (fst . showPitchClass) notes))
             
 renorm :: Int -> Int
 renorm p = mod p 12
