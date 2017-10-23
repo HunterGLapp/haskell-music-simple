@@ -38,3 +38,7 @@ renorm p = mod p 12
 sharp p = renorm (p + 1)
 
 flat p = renorm (p - 1)
+
+--Interval functions
+data Interval = Unity | Min2nd | Maj2nd | Min3rd | Maj3rd | P4th | Dim5th | P5th | Min6th | Maj6th | Min7th | Maj7th deriving (Eq, Ord, Show, Enum)
+       --   = zipWith (+) [0..11] 
